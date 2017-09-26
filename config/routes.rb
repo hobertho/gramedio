@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # HOME
+  get '/' => "home#index", as: :home
+
+  # register
+  get '/register' => 'user#index', as: :user
+  post '/register/new' => 'user#new', as: :user
 end

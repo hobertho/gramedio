@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Gramedio</title>
     <%= csrf_meta_tags %>
 
@@ -8,7 +9,148 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#NavbarKolep1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./index.php">Gramedio.com</a>
+
+      </div>
+
+
+
+      <div class="navbar-collapse collapse" id="NavbarKolep1">
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded=”false” aria-haspopup=”true”>Kategori<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <!-- List Kategorinya !-->
+              <?php
+						$connection = new mysqli('localhost','root','','toko');
+						 $sql = "select distinct  category from book order by category";
+						 $result = $connection->query ($sql);
+              while ($row = mysqli_fetch_array ($result))
+              {
+              echo '<li><a href="./kategori_view.php?id='.$row['category'].'">'.$row['category'].'</a></li>';
+              }
+              ?>
+
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search" action="search_view.php" method="GET">
+          <div class="form-group">
+            <input type="text" class="form-control" size="50" placeholder="Search Barang" name="search" id="search">
+          </div>
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/register">Register</a></li>
+          <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login
+            </a>
+            <ul class="dropdown-menu" style="padding:20px; padding-bottom:0px">
+              <li>
+                <form class="form-horizontal" action="servlet/loginServlet.php" method="post">
+                  <div class="form-group">
+                    <div class="col-xs-12 col-md-12">
+                      <input type="text" class="form-control" id="username" name ="username" size="30" placeholder="Username">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <input type="password" class="form-control" id="password" name="password" size="30" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="remember"> Remember me
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <input type="submit" name="submit" class="btn btn-success" style="width:50%;" value="Sign In">
+                    </div>
+                  </div>
+                </form>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li style="margin-bottom:15px;"><a href="#">Forgot Password?</a></li>
+            </ul>
+          </li>
+          <li><a href="."><span class="glyphicon glyphicon-question-sign"></span> Need Help?</a></li>
+        </ul>
+      </div>
+
+
+    </div>
+  </nav>
+
+
   <body>
     <%= yield %>
+
+    <div class="footer-container">
+      <div class="panel panel-default footer-panel">
+        <div class="panel-body">
+
+          <div class="col-xs-5 footer-list-1">
+            <h4>Tentang Gramedio</h4>
+            <hr style="margin:2px; margin-bottom:7px;" />
+            <div >
+              <img class="media-object" src="./img/logo.jpg" alt="Logo" align="left" style="max-height:64px; max-width:64px;"><b>Gramedio</b> merupakan pilihan Online Store yang tepat buat kamu yang mencari buku-buku terpopuler.
+            </div>
+          </div>
+          <div class="col-xs-2 footer-list-3">
+            <h4>Info</h4>
+            <hr style="margin:2px; margin-bottom:7px;" />
+            <ul style="padding-left:20px;">
+              <!--<li><a href="#">Cara Belanja</a></li>!-->
+              <li><a href="./metode-pembayaran.php">Cara Pembayaran</a></li>
+              <li><a href="./informasi-pengiriman.php">Pengiriman Barang</a></li>
+              <li><a href="./faq-page.php">FAQ</a></li>
+              <li><a href="./terms.php">Term & Conditions</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-2 footer-list-4">
+            <h4>Layanan Pelanggan</h4>
+            <hr style="margin:2px; margin-bottom:7px;" />
+            <ul style="padding-left:20px;">
+              <li><a href="./retur-refund.php">Retur & Refund</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-3 footer-list-5">
+            <h4>Hubungi Kami</h4>
+            <hr style="margin:2px; margin-bottom:7px;" />
+            <div>
+              <span class="glyphicon glyphicon-envelope"></span> cs@gramedio.com
+              <br/>
+              <span class="glyphicon glyphicon-earphone"></span> +62 21 56958723
+              <br/>
+              <span class="glyphicon glyphicon-phone"></span> +62 81 1856158
+              <br/>
+              <span class="glyphicon glyphicon-time"></span> 9am - 9pm
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        ©2015 Gramedio.All Right Reserved | Web Development By Hobert, Willy, Erwin, Leo
+      </div>
+    </div>
+
   </body>
 </html>
