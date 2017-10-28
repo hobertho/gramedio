@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20170927035455) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "front_name"
     t.string "last_name"
     t.text "address"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170927035455) do
     t.string "phone"
     t.string "home"
     t.string "email"
-    t.boolean "subscribe"
+    t.boolean "newsletter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

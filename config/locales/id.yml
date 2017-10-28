@@ -1,0 +1,4 @@
+id:
+  user:
+    username_taken: 'username sudah digunakan oleh user lain!'
+    email_taken: 'email sudah digunakan oleh user lain!'

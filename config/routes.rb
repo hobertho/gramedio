@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   get '/refund' => 'home#refund'
 
   # register
-  resources :user, except: :index, path: '/register'
+  resources :user, path: '/register'
 end

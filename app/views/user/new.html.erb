@@ -8,7 +8,8 @@
     <div class="panel-heading">Register New User</div>
 
     <div class="panel-body" style="padding-left:20px; padding-right:0px;">
-      <form class="form-horizontal" action="/register" method="post">
+      <%= form_for @user, method: :post, url: '/register', html: {class: "form-horizontal"} do |f| %>
+      <!--<form class="form-horizontal" action="/register" method="post">-->
         <h4 class="secondary-title" style="margin-top:20px;">Login Info</h4>
         <hr style="width:678px; margin-top:0px; margin-bottom:10px; padding-left:0px; padding-top:0px; float:left;"/>
         <table id="table-user">
@@ -16,19 +17,22 @@
           <tr>
             <td><label class="control-label required" for="username">Username:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="username" name="username" size="40" placeholder="Username" required  /></td>
+            <td><%= f.text_field :username, class: 'form-control', size: 40, placeholder: 'Username', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="username" name="username" size="40" placeholder="Username" required  /></td>-->
             <td><label class="user-input-info">*(6-20 Karakter)</label></td>
           </tr>
           <tr>
             <td><label class="control-label required" for="password">Password:</label></td>
             <td></td>
-            <td><input type="password" class="form-control" id="password" name="password" size="40" placeholder="Password" required /></td>
+            <td><%= f.password_field :password, class: 'form-control', size: 40, placeholder: 'Password', required: true %></td>
+            <!--<td><input type="password" class="form-control" id="password" name="password" size="40" placeholder="Password" required /></td>-->
             <td><label class="user-input-info">*(6-20 Karakter)</label></td>
           </tr>
           <tr>
             <td><label class="control-label required" for="confirm_password">Confirm Password:</label></td>
             <td></td>
-            <td><input type="password" class="form-control" id="confirm_password" name="confirm_password" size="40" placeholder="Confirm Password" required/></td>
+            <td><%= f.password_field :password_confirmation, class: 'form-control', size: 40, placeholder: 'Confirm Password', required: true%></td>
+            <!--<td><input type="password" class="form-control" id="password_confirmation" name="password_confirmation" size="40" placeholder="Confirm Password" required/></td>-->
           </tr>
           </tbody>
         </table>
@@ -40,34 +44,40 @@
           <tr>
             <td><label class="control-label required" for="nama_dpn">Nama Depan:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="nama_dpn" name="nama_dpn" size="80" placeholder="Nama Depan" required/></td>
+            <td><%= f.text_field :front_name, class: 'form-control', size: 80, placeholder: 'Nama Depan', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="front_name" name="front_name" size="80" placeholder="Nama Depan" required/></td>-->
           </tr>
           <tr>
             <td><label class="control-label required" for="nama_blkg">Nama Belakang:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="nama_blkg" name="nama_blkg" size="80" placeholder="Nama Belakang" required/></td>
+            <td><%= f.text_field :last_name, class: 'form-control', size: 80, placeholder: 'Nama Belakang', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="last_name" name="last_name" size="80" placeholder="Nama Belakang" required/></td>-->
           </tr>
           <tr>
             <td><label class="control-label required" for="alamat">Alamat:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="alamat" name="alamat" size="80" placeholder="Alamat" required/></td>
+            <td><%= f.text_field :address, class: 'form-control', size: 80, placeholder: 'Alamat', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="address" name="address" size="80" placeholder="Alamat" required/></td>-->
           </tr>
           <tr>
             <td><label class="control-label required" for="kota">Kota:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="kota" name="kota" size="80" placeholder="Kota" required/></td>
+            <td><%= f.text_field :city, class: 'form-control', size: 80, placeholder: 'Kota', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="city" name="city" size="80" placeholder="Kota" required/></td>-->
           </tr>
           <tr>
             <td><label class="control-label" for="kode_pos">Kode Pos:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="kode_pos" name="kode_pos" size="80" placeholder="Kode Pos" required/></td>
+            <td><%= f.text_field :post_code, class: 'form-control', size: 80, placeholder: 'Kode Pos', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="post_code" name="post_code" size="80" placeholder="Kode Pos" required/></td>-->
           </tr>
           <tr>
             <td><label class="control-label required" for="country">Negara:</label></td>
             <td></td>
             <td ><div class="select-menu">
-              <select id="country" name ="country">
-              </select>
+              <%= f.select :country, [], {}, id: 'country' %>
+              <!--<select id="country" name ="country">-->
+              <!--</select>-->
             </div>
             </td>
           </tr>
@@ -77,25 +87,29 @@
             <td></td>
             <td >
               <div class="select-menu">
-                <select name ="state" id ="state">
-                </select>
+                <%= f.select :state, [], {}, id: 'state' %>
+                <!--<select name ="state" id ="state">-->
+                <!--</select>-->
               </div>
             </td>
           </tr>
           <tr>
             <td><label class="control-label required" for="no_hp">Handphone:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="no_hp" name="no_hp" size="80" placeholder="Handphone" required/></td>
+            <td><%= f.text_field :phone, class: 'form-control', size: 80, placeholder: 'Handphone', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="phone" name="phone" size="80" placeholder="Handphone" required/></td>-->
           </tr>
           <tr>
             <td><label class="control-label" for="no_tlp">Telepon:</label></td>
             <td></td>
-            <td><input type="text" class="form-control" id="no_tlp" name="no_tlp" size="80" placeholder="Telepon" required/></td>
+            <td><%= f.text_field :home, class: 'form-control', size: 80, placeholder: 'Telepon', required: true %></td>
+            <!--<td><input type="text" class="form-control" id="home" name="home" size="80" placeholder="Telepon" required/></td>-->
           </tr>
           <tr>
             <td><label class="control-label required" for="email">Email:</label></td>
             <td></td>
-            <td><input type="email" class="form-control" id="email" name="email" size="80" placeholder="Email" required/></td>
+            <td><%= f.text_field :email, class: 'form-control', size: 80, placeholder: 'Email', required: true %></td>
+            <!--<td><input type="email" class="form-control" id="email" name="email" size="80" placeholder="Email" required/></td>-->
           </tr>
 
           </tbody>
@@ -110,8 +124,12 @@
             </td>
             <td></td>
             <td>
-              <input type="radio" name="newsletter" value="1" />Ya
-              <input type="radio" name="newsletter" value="0" checked="checked" />Tidak
+              <%= f.label :newsletter, 'ya', value: 'true' %>
+              <%= f.radio_button :newsletter, true %>
+              <%= f.label :newsletter, 'tidak', value: 'false' %>
+              <%= f.radio_button :newsletter, false, checked: true %>
+              <!--<input type="radio" name="newsletter" value="1" />Ya-->
+              <!--<input type="radio" name="newsletter" value="0" checked="checked" />Tidak-->
             </td>
           </tr>
           </tbody>
@@ -119,9 +137,11 @@
         <hr style="width:678px; margin-top:8px; padding-left:0px; padding-top:0px; float:left;"/>
         <div class="btn-user">
           <label>Dengan menekan tombol Daftar, saya mengkonfirmasi telah menyetujui <a href="/terms">Syarat dan Ketentuan</a> Gramedio yang berlaku</label>
-          <button type="submit" id="btn-daftar" class="btn btn-success">Daftar</button>
+          <%= f.submit 'Daftar', class: 'btn btn-success', id: 'btn-daftar' %>
+          <!--<button type="submit" id="btn-daftar" class="btn btn-success">Daftar</button>-->
         </div>
-      </form>
+      <% end %>
+      <!--</form>-->
     </div>
   </div>
 </div>
